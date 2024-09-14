@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState,useEffect } from 'react'
 import 'h8k-components'
 
 import { image1, image2, image3, image4 } from './assets/images'
@@ -31,6 +31,13 @@ function App() {
   const [ slideTimer, setSlideTimer ] = useState(null)
   const [ slideDuration ] = useState(3000)
 
+    const handleNext=()=>{
+      setActiveIndex(prevIndex=>prevIndex+1 % catalogs.length);
+    }
+    const  handlePrev=()=>{
+      setActiveIndex((prevIndex)=>prevIndex-1 %catalogs.length);
+    }
+
   return (
     <Fragment>
       <h8k-navbar header={ title }></h8k-navbar>
@@ -42,6 +49,7 @@ function App() {
             <button 
               className="icon-only outlined"
               data-testid="prev-slide-btn"
+              onClick={handlePrev}
             >
               <i className="material-icons">arrow_back</i>
             </button>
@@ -52,6 +60,7 @@ function App() {
             <button 
               className="icon-only outlined"
               data-testid="next-slide-btn"
+              onClick={handleNext}
             >
               <i className="material-icons">arrow_forward</i>
             </button>

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-function Thumbs({ items, currentIndex }) {
+function Thumbs({ items, currentIndex,handleNextImage }) {
     
     return (
         <Fragment>
@@ -19,6 +19,7 @@ function Thumbs({ items, currentIndex }) {
                                 className='mx-5 thumb' 
                                 id={idx} 
                                 style={{ backgroundImage: 'url('+ catalog.thumb + ')' }}
+                                onClick={()=>handleNextImage(idx)}
                             />
                         </span>
                     </span>
