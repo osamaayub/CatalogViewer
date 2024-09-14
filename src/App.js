@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useState, useEffect, useCallback } from 'react'
+import React, { Fragment, useState, useEffect, useCallback} from 'react'
 import 'h8k-components'
 
 import { image1, image2, image3, image4 } from './assets/images'
@@ -7,7 +7,7 @@ import { Thumbs, Viewer } from './components'
 
 const title = 'Catalog Viewer'
 
-function App() {
+const App=()=> {
   const catalogsList = [
     {
       thumb: image1,
@@ -32,7 +32,6 @@ function App() {
   const [slideTimer, setSlideTimer] = useState(null)
   const [slideDuration] = useState(3000)
   const [ischecked, setIschecked] = useState(false);
-
   const handleNext = useCallback(() => {
     setActiveIndex(prevIndex => (prevIndex + 1) % catalogs.length)
   }, [catalogs.length])
@@ -44,13 +43,15 @@ function App() {
 
 
   useEffect(() => {
+    let TimeInterval;
     if (ischecked) {
-      setSlideTimer(setInterval(handleNext, slideDuration));
+      TimeInterval=setInterval(handleNext, slideDuration);
+      setSlideTimer(TimeInterval);
     }
     return () => {
-      if (slideTimer) {
-        clearInterval(slideTimer)
-        setSlideTimer(null);
+      if (TimeInterval) {
+        clearInterval(TimeInterval);
+        setSlideTimer(TimeInterval);
       }
     }
   }, [ischecked,handleNext,slideDuration])
